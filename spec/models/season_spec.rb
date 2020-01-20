@@ -1,4 +1,5 @@
 require 'rails_helper'
+require "models/concerns/purchaseable_spec"
 
 RSpec.describe Season, type: :model do
 
@@ -7,6 +8,7 @@ RSpec.describe Season, type: :model do
   it { should validate_presence_of(:plot) }
   it { should validate_presence_of(:number) }
   it { should validate_numericality_of(:number).is_greater_than_or_equal_to(0) }
+  it_behaves_like "purchaseable"
 
   before { @season = FactoryBot.build(:season) }
 

@@ -15,4 +15,6 @@ RSpec.describe User, type: :model do
 
   it { should validate_uniqueness_of(:email) }
 
+  it { should have_many(:purchases).dependent(:destroy) }
+
 end

@@ -1,5 +1,7 @@
 class Season < ApplicationRecord
 
+  include Purchaseable
+
   has_many :episodes, dependent: :destroy
 
   validates_presence_of :title, :plot

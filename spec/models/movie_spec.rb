@@ -1,9 +1,11 @@
 require 'rails_helper'
+require "models/concerns/purchaseable_spec"
 
 RSpec.describe Movie, type: :model do
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:plot) }
+  it_behaves_like "purchaseable"
 
   describe "recent" do
     before(:each) do

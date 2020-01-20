@@ -14,8 +14,8 @@ class MoviesController < ApplicationController
 
   private
 
-  def fetch_movies
-    Movie.recent
-  end
+    def fetch_movies
+      Movie.recent
+    end
 
 end
