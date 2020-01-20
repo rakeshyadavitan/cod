@@ -8,5 +8,7 @@
 require 'faker'
 
 10.times do 
-  Movie.create(title: Faker::Superhero.name, plot: Faker::Superhero.descriptor)
+  Movie.find_or_create_by(title: Faker::Book.title, plot: Faker::Book.genre)
+  Season.find_or_create_by(title: Faker::Book.title, plot: Faker::Book.genre, number: Faker::Number.non_zero_digit)
+  Episode.find_or_create_by(title: Faker::Book.title, plot: Faker::Book.genre, season_id: Faker::Number.within(range: 21..30), number: Faker::Number.non_zero_digit)
 end

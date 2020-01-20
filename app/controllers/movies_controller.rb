@@ -1,8 +1,21 @@
 class MoviesController < ApplicationController
 
+  before_action :fetch_movies
+
   def index
-    @movies = Movie.all.order(:created_at)
-    json_response(@movies)
+    json_response(fetch_movies)
+  end
+
+  def movies_and_seasons
+    seasons =  Season.recent
+    movies_and_seasons = fetch_movies + seasons
+    json_response(movies_and_seasons.sort_by! {|u| u.created_at})
+  end
+
+  private
+
+  def fetch_movies
+    Movie.recent
   end
 
 end

@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :seasons do
     resources :episodes
   end
-  
-  resources :movies
+
+  resources :movies do
+    get :movies_and_seasons, on: :collection
+  end
+
 end

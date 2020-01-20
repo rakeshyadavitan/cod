@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :movie do
-    title { Faker::Movie }
-    plot { 'Horror' }
+    title { Faker::Book.title }
+    plot { Faker::Book.genre }
   end
 end
