@@ -3,13 +3,13 @@ class MoviesController < ApplicationController
   before_action :fetch_movies
 
   def index
-    json_response(fetch_movies)
+    json_response(movies: fetch_movies)
   end
 
   def movies_and_seasons
     seasons =  Season.recent
     movies_and_seasons = fetch_movies + seasons
-    json_response(movies_and_seasons.sort_by! {|u| u.created_at})
+    json_response(movies_and_seasons: movies_and_seasons.sort_by! {|u| u.created_at})
   end
 
   private

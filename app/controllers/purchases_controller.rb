@@ -3,14 +3,27 @@ class PurchasesController < ApplicationController
   def create
 
     user = User.order("RANDOM()").first
-    purchase = user.purchases.build(purchase_params)
+    user_purchases = user.purchases
+    existing_purchase = user_purchases
+                          .where(price: params[:price], video_quality: params[:video_quality], purchaseable_type: params[:purchaseable_type], purchaseable_id: params[:purchaseable_id])
+                          .where("purchases.created_at < ?", 2.days.ago).first
 
-    if purchase.save
-      render json: purchase, status: 201
+    if existing_purchase.present?
+      existing_purchase.created_at = Time.now
+      if existing_purchase.save
+        render json: existing_purchase
+      else
+        render json: { errors: existing_purchases.errors }
+      end
     else
-      render json: { errors: purchase.errors }, status: 422
+      purchase = user_purchases.build(purchase_params)      
+      if purchase.save
+        render json: purchase, status: 201
+      else
+        render json: { errors: purchase.errors }
+      end
     end
-
+    
   end
 
   private
