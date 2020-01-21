@@ -5,7 +5,7 @@ RSpec.describe 'Movie API', type: :request do
   let!(:movies) { create_list(:movie, 10) }
   describe 'GET /movies' do
     # make HTTP get request before each example
-    before { get '/movies' }
+    before { get '/api/v1/movies' }
 
     it 'returns movies' do
       # Note `json` is a custom helper to parse JSON responses
