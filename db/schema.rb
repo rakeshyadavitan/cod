@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2020_01_20_183327) do
     t.integer "user_id"
     t.decimal "price"
     t.string "video_quality"
-    t.boolean "is_expired", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "purchaseable_type"

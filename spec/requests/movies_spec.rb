@@ -3,9 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Movie API', type: :request do
   # initialize test data 
   let!(:movies) { create_list(:movie, 10) }
-  let(:movie_id) { movies.first.id }
 
-  # Test suite for GET /todos
   describe 'GET /movies' do
     # make HTTP get request before each example
     before { get '/movies' }

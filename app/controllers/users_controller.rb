@@ -5,4 +5,5 @@ class UsersController < ApplicationController
     library = user.purchases.order('created_at')
     json_response(library)
   end
+
 end
