@@ -13,14 +13,14 @@ class PurchasesController < ApplicationController
       if existing_purchase.save
         render json: existing_purchase
       else
-        render json: { errors: existing_purchases.errors }
+        json_error(existing_purchase)
       end
     else
       purchase = user_purchases.build(purchase_params)      
       if purchase.save
         render json: purchase, status: 201
       else
-        render json: { errors: purchase.errors }
+        json_error(purchase)
       end
     end
     
@@ -30,6 +30,10 @@ class PurchasesController < ApplicationController
 
     def purchase_params
       params.require(:purchase).permit(:purchaseable_type, :purchaseable_id, :price, :video_quality)
+    end
+
+    def json_error(purchase)
+      render json: { errors: purchase.errors }
     end
 
 end
